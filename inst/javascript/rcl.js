@@ -106,6 +106,19 @@ function makeEventFunc(f,obj) {
                 xlim:[sw.lng,ne.lng]
             });          
         },
+
+	remove: function(div, k) {
+	    var map = window.rcleaflet[div].map;
+	    map.remove();
+	    k(null, true);
+	},
+
+	panTo: function(div, lat, lon, k) {
+	    var map = window.rcleaflet[div].map;
+	    var L = window.rcleaflet[div].L;
+	    map.panTo(new L.LatLng(lat, lon));
+	    k(null, true);
+	},
         
         removePolygons: function(div,k){ //temp function
             var L = window.rcleaflet[div].L;

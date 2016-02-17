@@ -23,6 +23,15 @@ lmap <- function(x=NULL,y=NULL,zoom=NULL,where=NULL,xlim=NULL,ylim=NULL,
     #return(map)
 }
 
+lremove <- function(map = .cache$last.map) {
+  .cache$ocaps$remove(map$div)
+  rm("last.map", envir = .cache)
+}
+
+lpanTo <- function(lat, lon, map = .cache$last.map) {
+  .cache$ocaps$panTo(map$div, lat, lon)
+}
+
 ## map R colors to RGB space, also re-cycle as needed and split off RGB and A
 .mapColor <- function(col, n) {
     cc <- col2rgb(col, TRUE)
